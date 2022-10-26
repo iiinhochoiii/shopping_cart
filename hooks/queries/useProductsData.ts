@@ -5,7 +5,6 @@ import { ProductsParams } from '@/interfaces/product';
 
 const useProductsData = (params: ProductsParams) => {
   return useQuery(queryKeys.PRODUCT_DATA, () => getProducts(params), {
-    staleTime: 60 * 1000, // 1분
     refetchOnWindowFocus: true,
   });
 };
