@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
-    emotion: true
-  }
-}
+    emotion: true,
+  },
+};
 
-module.exports = nextConfig
+export default nextConfig;
