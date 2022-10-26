@@ -1,13 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { productItems } from '@/datas/productItems';
-import { Product } from '@/interfaces/product';
+import { ResponseProducts } from '@/interfaces/product';
 
 const productItemsApi = (
   req: NextApiRequest,
-  res: NextApiResponse<{
-    items: Product[];
-    total: number;
-  }>
+  res: NextApiResponse<ResponseProducts>
 ) => {
   const {
     query: { page = 1, pageSize = 5, orderBy = 'desc' },

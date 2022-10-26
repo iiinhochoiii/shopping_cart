@@ -5,3 +5,14 @@ export interface Product {
   price: number;
   score: number;
 }
+
+export interface ResponseProducts {
+  items: Product[];
+  total: number;
+}
+
+export interface ProductsParams {
+  page: number;
+  pageSize: number;
+  orderBy: 'desc' | 'asc';
+}
