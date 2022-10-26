@@ -5,6 +5,10 @@ const nextConfig = {
   compiler: {
     emotion: true,
   },
+  images: {
+    domains: ['img.29cm.co.kr'],
+  },
 };
 
-export default nextConfig;
+// eslint-disable-next-line no-undef
+module.exports = nextConfig;
