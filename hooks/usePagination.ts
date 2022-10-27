@@ -4,11 +4,12 @@ interface Props {
   total?: number;
   perPage: number;
   pageSize: number;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const usePagination = (props: Props) => {
-  const { total, perPage, pageSize } = props;
-  const [currentPage, setCurrentPage] = useState(1);
+  const { total, perPage, pageSize, currentPage, setCurrentPage } = props;
   const [pageList, setPageList] = useState<number[]>([]);
 
   const paging = useCallback(() => {
@@ -29,10 +30,6 @@ const usePagination = (props: Props) => {
     paging();
   }, [total, currentPage]);
 
-  const movePageHandler = (pageNum: number) => {
-    setCurrentPage(pageNum);
-  };
-
   const nextPageHandler = () => {
     if (currentPage < Math.ceil(Number(total) / pageSize)) {
       setCurrentPage(currentPage + 1);
@@ -46,9 +43,7 @@ const usePagination = (props: Props) => {
   };
 
   return {
-    currentPage,
     pageList,
-    movePageHandler,
     nextPageHandler,
     prevPageHandler,
   };
