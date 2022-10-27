@@ -3,6 +3,7 @@ import * as S from './style';
 import { Product } from '@/interfaces/product';
 import Image from 'next/image';
 import { comma } from '@/utils/common';
+import useCart from '@/hooks/useCart';
 
 interface Props {
   item: Product;
@@ -11,6 +12,7 @@ interface Props {
 const ProductCard = (props: Props) => {
   const { item } = props;
 
+  const { isCart, addCart, removeCart } = useCart(item);
   return (
     <S.Card>
       <S.ProductContent>
@@ -24,9 +26,20 @@ const ProductCard = (props: Props) => {
           </p>
         </S.InfomationWrap>
       </S.ProductContent>
-      <S.CartButton>장바구니 담기</S.CartButton>
+      <S.CartButton
+        isCart={isCart}
+        onClick={() => {
+          if (isCart) {
+            removeCart();
+          } else {
+            addCart();
+          }
+        }}
+      >
+        {isCart ? '장바구니 빼기' : '장바구니 담기'}
+      </S.CartButton>
     </S.Card>
   );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);

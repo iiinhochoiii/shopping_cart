@@ -37,15 +37,15 @@ export const InfomationWrap = styled.div`
   }
 `;
 
-export const CartButton = styled.button`
+export const CartButton = styled.button<{ isCart: boolean }>`
   margin-top: 6px;
   border: 1px solid #e4e4e4;
   padding: 0 8px;
   border-radius: 1px;
   font-size: 10px;
-  color: #5d5d5d;
-  background: none;
   height: 26px;
   line-height: 26px;
   cursor: pointer;
+  color: ${(props) => (props.isCart ? '#fff' : '#5d5d5d')};
+  background: ${(props) => (props.isCart ? '#333' : 'none')};
 `;
