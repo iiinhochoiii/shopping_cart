@@ -7,6 +7,20 @@ export const CardContainer = styled.div`
   display: table;
   width: 100%;
   table-layout: fixed;
+
+  .table-content {
+    display: table-cell;
+    padding: 30px 0px;
+    line-height: 24px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    vertical-align: middle;
+  }
+`;
+
+export const CheckboxContent = styled.div`
+  width: 4.3%;
+  border-top: 1px solid rgb(228, 228, 228);
 `;
 
 export const InfoContent = styled.div`
@@ -42,6 +56,7 @@ export const InfoImage = styled.div`
   height: 110px;
   margin: 3px 25px 0px 0px;
   position: relative;
+  font-size: 18px;
 `;
 
 export const InfoWrap = styled.div`
@@ -57,18 +72,12 @@ export const InfoWrap = styled.div`
 `;
 
 export const QuantityContent = styled.div`
-  display: table-cell;
-  padding: 30px 0px;
-  font-size: 18px;
-  line-height: 24px;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  vertical-align: middle;
   width: 200px;
   border-style: solid;
   border-color: ${gray};
   border-image: initial;
   border-width: 1px 1px 0px;
+  font-size: 18px;
 
   & > div {
     display: flex;
@@ -107,17 +116,10 @@ export const QuantityContent = styled.div`
 `;
 
 export const PriceContent = styled.div`
-  display: table-cell;
-  padding: 30px 0px;
   border-top: 1px solid ${gray};
   border-right: 1px solid ${gray};
-  line-height: 24px;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  vertical-align: middle;
   width: 200px;
   font-size: 18px;
-  font-weight: bold;
 
   & > span {
     font-size: 20px;
@@ -126,14 +128,8 @@ export const PriceContent = styled.div`
 `;
 
 export const DeliveryContent = styled.div`
-  display: table-cell;
-  padding: 30px 0px;
   border-top: 1px solid ${gray};
-  line-height: 24px;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  vertical-align: middle;
   width: 200px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
 `;

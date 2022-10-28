@@ -18,7 +18,7 @@ export const ContentHeader = styled.div`
   table-layout: fixed;
   border-top: 4px solid ${black};
 
-  .product-info {
+  .table-title {
     display: table-cell;
     padding: 0px;
     border: 0px;
@@ -26,24 +26,18 @@ export const ContentHeader = styled.div`
     font-size: 18px;
     font-weight: 700;
     line-height: 24px;
+    vertical-align: middle;
+    text-align: center;
     color: ${black};
-    vertical-align: middle;
-    text-align: center;
-  }
 
-  .quantity,
-  .price,
-  .delivery-fee {
-    display: table-cell;
-    padding: 0px;
-    border: 0px;
-    height: 74px;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 24px;
-    color: rgb(0, 0, 0);
-    vertical-align: middle;
-    text-align: center;
-    width: 200px;
+    &.checkbox {
+      width: 4.3%;
+    }
+
+    &.quantity,
+    .price,
+    .delivery-fee {
+      width: 200px;
+    }
   }
 `;

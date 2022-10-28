@@ -4,9 +4,11 @@ import { CART_KEY } from '@/constants/storageKeys';
 import { Product } from '@/interfaces/product';
 import CartCard from './Card';
 import CartPaymentComponent from './Payment';
+import Checkbox from '../Common/Checkbox';
 
 const CartComponent = () => {
   const [carts, setCarts] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     const getCart = () => {
@@ -22,10 +24,16 @@ const CartComponent = () => {
     <S.Container>
       <S.CartContent>
         <S.ContentHeader>
-          <div className="product-info">상품정보</div>
-          <div className="quantity">수량</div>
-          <div className="price">주문금액</div>
-          <div className="delivery-fee">배송비</div>
+          <div className="table-title checkbox">
+            <Checkbox
+              isChecked={isChecked}
+              onChangeHandler={() => setIsChecked(!isChecked)}
+            />
+          </div>
+          <div className="table-title product-info">상품정보</div>
+          <div className="table-title quantity">수량</div>
+          <div className="table-title price">주문금액</div>
+          <div className="table-title delivery-fee">배송비</div>
         </S.ContentHeader>
         {carts.map((item: Product & { quantity: number }) => (
           <CartCard key={item.item_no} cart={item} />

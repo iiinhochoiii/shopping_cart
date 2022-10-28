@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 import { Product } from '@/interfaces/product';
 import Image from 'next/image';
 import { comma } from '@/utils/common';
+import Checkbox from '@/components/Common/Checkbox';
 
 interface Props {
   cart: Product & { quantity: number };
 }
 const CartCard = (props: Props) => {
   const { cart } = props;
+  const [isChecked, setIsChecked] = useState(false);
 
   return (
     <S.CardContainer>
-      <S.InfoContent>
+      <S.CheckboxContent className="table-content">
+        <Checkbox
+          isChecked={isChecked}
+          onChangeHandler={() => setIsChecked(!isChecked)}
+        />
+      </S.CheckboxContent>
+      <S.InfoContent className="table-content">
         <div>
           <S.InfoImage>
             <Image src={cart.detail_image_url} layout="fill" priority />
@@ -25,17 +33,19 @@ const CartCard = (props: Props) => {
         </div>
         <button className="delete-btn">삭제</button>
       </S.InfoContent>
-      <S.QuantityContent>
+      <S.QuantityContent className="table-content">
         <div>
           <button>-</button>
           <input value={cart.quantity} onChange={() => console.log('test')} />
           <button>+</button>
         </div>
       </S.QuantityContent>
-      <S.PriceContent>
+      <S.PriceContent className="table-content">
         <span>{comma(Number(cart.price) * Number(cart.quantity))}</span>원
       </S.PriceContent>
-      <S.DeliveryContent>무료 업체배송</S.DeliveryContent>
+      <S.DeliveryContent className="table-content">
+        무료 업체배송
+      </S.DeliveryContent>
     </S.CardContainer>
   );
 };
