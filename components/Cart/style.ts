@@ -35,8 +35,8 @@ export const ContentHeader = styled.div`
     }
 
     &.quantity,
-    .price,
-    .delivery-fee {
+    &.price,
+    &.delivery-fee {
       width: 200px;
     }
   }

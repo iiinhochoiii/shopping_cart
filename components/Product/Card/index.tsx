@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 import { Product } from '@/interfaces/product';
 import Image from 'next/image';
 import { comma } from '@/utils/common';
-import useCart from '@/hooks/useCart';
+import useCartStore from '@/stores/useCartStore';
 
 interface Props {
   item: Product;
@@ -11,8 +11,11 @@ interface Props {
 
 const ProductCard = (props: Props) => {
   const { item } = props;
+  const { carts, removeCart, addCart } = useCartStore();
+  const [isCart, setIsCart] = useState(
+    !!carts.find((cart) => cart.item_no === item.item_no)
+  );
 
-  const { isCart, addCart, removeCart } = useCart(item);
   return (
     <S.Card>
       <S.ProductContent>
@@ -30,9 +33,11 @@ const ProductCard = (props: Props) => {
         isCart={isCart}
         onClick={() => {
           if (isCart) {
-            removeCart();
+            removeCart(item.item_no);
+            setIsCart(false);
           } else {
-            addCart();
+            addCart(item);
+            setIsCart(true);
           }
         }}
       >

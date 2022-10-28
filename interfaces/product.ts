@@ -17,3 +17,7 @@ export interface ProductsParams {
   pageSize: number;
   orderBy: 'desc' | 'asc';
 }
+
+export interface Cart extends Product {
+  quantity: number;
+}

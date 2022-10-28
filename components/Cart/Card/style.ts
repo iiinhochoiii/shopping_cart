@@ -31,7 +31,7 @@ export const InfoContent = styled.div`
   vertical-align: middle;
   position: relative;
   padding: 27px 60px 30px 0px;
-  text-align: left;
+  text-align: left !important;
 
   & > div {
     display: flex;
