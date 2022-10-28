@@ -3,6 +3,7 @@ import * as S from './style';
 import { CART_KEY } from '@/constants/storageKeys';
 import { Product } from '@/interfaces/product';
 import CartCard from './Card';
+import CartPaymentComponent from './Payment';
 
 const CartComponent = () => {
   const [carts, setCarts] = useState([]);
@@ -30,6 +31,7 @@ const CartComponent = () => {
           <CartCard key={item.item_no} cart={item} />
         ))}
       </S.CartContent>
+      <CartPaymentComponent />
     </S.Container>
   );
 };
