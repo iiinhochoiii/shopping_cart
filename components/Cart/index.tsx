@@ -4,6 +4,7 @@ import { Product } from '@/interfaces/product';
 import Checkbox from '../Common/Checkbox';
 import useCartStore from '@/stores/useCartStore';
 import dynamic from 'next/dynamic';
+import useCouponsData from '@/hooks/queries/useCouponsData';
 
 const CartCard = dynamic(() => import('./Card'), { ssr: false });
 const CartPaymentComponent = dynamic(() => import('./Payment'), { ssr: false });
@@ -14,6 +15,9 @@ const CartComponent = () => {
   const [isCheckedList, setIsCheckedList] = useState(
     Array.from({ length: carts.length }, () => true)
   );
+
+  const { data: coupons } = useCouponsData();
+  console.log(coupons);
 
   return (
     <S.Container>
