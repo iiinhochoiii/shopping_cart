@@ -9,6 +9,7 @@ interface State {
   addCart: (item: Product) => void;
   increaseItem: (item_no: number) => void;
   decreaseItem: (item_no: number) => void;
+  changeQuantityItem: (item_no: number, value: number) => void;
 }
 
 const useCartStore = create(
@@ -51,6 +52,17 @@ const useCartStore = create(
               ? {
                   ...cart,
                   quantity: cart.quantity - 1,
+                }
+              : cart
+          ),
+        })),
+      changeQuantityItem: (item_no, value) =>
+        set((state) => ({
+          carts: state.carts.map((cart) =>
+            cart.item_no === item_no
+              ? {
+                  ...cart,
+                  quantity: value,
                 }
               : cart
           ),

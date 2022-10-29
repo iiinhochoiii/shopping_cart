@@ -13,11 +13,23 @@ interface Props {
 }
 const CartCard = (props: Props) => {
   const { cart, isChecked, onChnageCheckbox } = props;
-  const { removeCart, increaseItem, decreaseItem } = useCartStore();
+  const { removeCart, increaseItem, decreaseItem, changeQuantityItem } =
+    useCartStore();
 
   const removeHandler = () => {
     if (confirm('장바구니에서 삭제하시겠습니까?')) {
       removeCart(cart.item_no);
+    }
+  };
+
+  const onChnageQuantityHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const reg = /^[0-9]+$/;
+
+    if (reg.test(value) || value === '') {
+      changeQuantityItem(cart.item_no, Number(value));
+    } else {
+      alert('숫자만 입력 가능합니다.');
     }
   };
 
@@ -55,7 +67,10 @@ const CartCard = (props: Props) => {
           >
             -
           </button>
-          <input value={cart.quantity} onChange={() => console.log('test')} />
+          <input
+            value={cart.quantity}
+            onChange={(e) => onChnageQuantityHandler(e)}
+          />
           <button onClick={() => increaseItem(cart.item_no)}>+</button>
         </div>
       </S.QuantityContent>
