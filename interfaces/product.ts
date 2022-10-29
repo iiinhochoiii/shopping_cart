@@ -20,4 +20,5 @@ export interface ProductsParams {
 
 export interface Cart extends Product {
   quantity: number;
+  isChecked: boolean;
 }

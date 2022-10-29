@@ -9,12 +9,16 @@ import useCartStore from '@/stores/useCartStore';
 interface Props {
   cart: Product & { quantity: number };
   isChecked: boolean;
-  onChnageCheckbox: () => void;
 }
 const CartCard = (props: Props) => {
-  const { cart, isChecked, onChnageCheckbox } = props;
-  const { removeCart, increaseItem, decreaseItem, changeQuantityItem } =
-    useCartStore();
+  const { cart, isChecked } = props;
+  const {
+    removeCart,
+    increaseItem,
+    decreaseItem,
+    changeQuantityItem,
+    onSelectChangeCheckbox,
+  } = useCartStore();
 
   const removeHandler = () => {
     if (confirm('장바구니에서 삭제하시겠습니까?')) {
@@ -38,7 +42,7 @@ const CartCard = (props: Props) => {
       <S.CheckboxContent className="table-content">
         <Checkbox
           isChecked={isChecked}
-          onChangeHandler={() => onChnageCheckbox()}
+          onChangeHandler={() => onSelectChangeCheckbox(cart.item_no)}
         />
       </S.CheckboxContent>
       <S.InfoContent className="table-content">

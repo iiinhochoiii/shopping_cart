@@ -10,6 +10,8 @@ interface State {
   increaseItem: (item_no: number) => void;
   decreaseItem: (item_no: number) => void;
   changeQuantityItem: (item_no: number, value: number) => void;
+  onAllChnageCheckbox: () => void;
+  onSelectChangeCheckbox: (item_no: number) => void;
 }
 
 const useCartStore = create(
@@ -30,7 +32,7 @@ const useCartStore = create(
 
         if (!carts.find((cart) => cart.item_no === item.item_no)) {
           return set((state) => ({
-            carts: [...state.carts, { ...item, quantity: 1 }],
+            carts: [...state.carts, { ...item, quantity: 1, isChecked: true }],
           }));
         }
       },
@@ -67,10 +69,41 @@ const useCartStore = create(
               : cart
           ),
         })),
+      onAllChnageCheckbox: () =>
+        set((state) => ({
+          carts: state.carts.map((cart) => {
+            return {
+              ...cart,
+              isChecked: !cart.isChecked,
+            };
+          }),
+        })),
+      onSelectChangeCheckbox: (item_no) =>
+        set((state) => ({
+          carts: state.carts.map((cart) =>
+            cart.item_no === item_no
+              ? {
+                  ...cart,
+                  isChecked: !cart.isChecked,
+                }
+              : cart
+          ),
+        })),
     }),
     {
       name: CART_KEY, // name of item in the storage (must be unique)
-      getStorage: () => localStorage, // (optional) by default the 'localStorage' is used
+      getStorage: () => localStorage, // (optional) by default the 'localStorage' is used,
+      partialize: (state) => {
+        return {
+          ...state,
+          carts: state.carts.map((cart) => {
+            return {
+              ...cart,
+              isChecked: true,
+            };
+          }),
+        };
+      },
     }
   )
 );
