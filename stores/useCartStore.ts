@@ -7,6 +7,8 @@ interface State {
   carts: Cart[];
   removeCart: (item_no: number) => void;
   addCart: (item: Product) => void;
+  increaseItem: (item_no: number) => void;
+  decreaseItem: (item_no: number) => void;
 }
 
 const useCartStore = create(
@@ -31,6 +33,28 @@ const useCartStore = create(
           }));
         }
       },
+      increaseItem: (item_no) =>
+        set((state) => ({
+          carts: state.carts.map((cart) =>
+            cart.item_no === item_no
+              ? {
+                  ...cart,
+                  quantity: cart.quantity + 1,
+                }
+              : cart
+          ),
+        })),
+      decreaseItem: (item_no) =>
+        set((state) => ({
+          carts: state.carts.map((cart) =>
+            cart.item_no === item_no
+              ? {
+                  ...cart,
+                  quantity: cart.quantity - 1,
+                }
+              : cart
+          ),
+        })),
     }),
     {
       name: CART_KEY, // name of item in the storage (must be unique)

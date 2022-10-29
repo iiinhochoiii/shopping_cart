@@ -93,14 +93,12 @@ export const QuantityContent = styled.div`
       font-size: 20px;
       font-weight: 400;
       color: rgb(160, 160, 160);
+      cursor: pointer;
     }
 
     & > input {
-      display: block;
       color: rgb(26, 26, 26);
       outline: none;
-      margin: 0px;
-      padding: 0px;
       width: 37px;
       height: 36px;
       border-width: 1px 0px 1px 0px;

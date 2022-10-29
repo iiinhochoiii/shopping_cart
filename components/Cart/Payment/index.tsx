@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as S from './style';
+import useCartStore from '@/stores/useCartStore';
+import { comma } from '@/utils/common';
 
 const CartPaymentComponent = () => {
+  const { carts } = useCartStore();
+
+  const totalPayment = useMemo(() => {
+    const pay = carts.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+    return pay;
+  }, [carts]);
+
   return (
     <S.PaymentContainer>
       <S.Content>
@@ -12,8 +21,8 @@ const CartPaymentComponent = () => {
         </S.ContentTitleWrap>
         <S.ContentPayInfoWrap>
           <div className="table-content price">
-            <p>197,000원</p>
-            <span>총 2개</span>
+            <p>{comma(totalPayment)}원</p>
+            <span>총 {carts.length || 0}개</span>
           </div>
           <div className="table-content delivery-fee">
             <i />
@@ -21,7 +30,7 @@ const CartPaymentComponent = () => {
           </div>
           <div className="table-content payment">
             <i />
-            <p>197,000원</p>
+            <p>{comma(totalPayment)}원</p>
           </div>
         </S.ContentPayInfoWrap>
       </S.Content>
