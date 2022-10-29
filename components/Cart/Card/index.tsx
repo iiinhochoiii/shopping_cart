@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 import { Product } from '@/interfaces/product';
 import Image from 'next/image';
@@ -8,11 +8,12 @@ import useCartStore from '@/stores/useCartStore';
 
 interface Props {
   cart: Product & { quantity: number };
+  isChecked: boolean;
+  onChnageCheckbox: () => void;
 }
 const CartCard = (props: Props) => {
-  const { cart } = props;
+  const { cart, isChecked, onChnageCheckbox } = props;
   const { removeCart, increaseItem, decreaseItem } = useCartStore();
-  const [isChecked, setIsChecked] = useState(false);
 
   const removeHandler = () => {
     if (confirm('장바구니에서 삭제하시겠습니까?')) {
@@ -25,7 +26,7 @@ const CartCard = (props: Props) => {
       <S.CheckboxContent className="table-content">
         <Checkbox
           isChecked={isChecked}
-          onChangeHandler={() => setIsChecked(!isChecked)}
+          onChangeHandler={() => onChnageCheckbox()}
         />
       </S.CheckboxContent>
       <S.InfoContent className="table-content">

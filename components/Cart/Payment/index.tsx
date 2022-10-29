@@ -3,13 +3,21 @@ import * as S from './style';
 import useCartStore from '@/stores/useCartStore';
 import { comma } from '@/utils/common';
 
-const CartPaymentComponent = () => {
+interface Props {
+  isCheckedList: boolean[];
+}
+
+const CartPaymentComponent = (props: Props) => {
+  const { isCheckedList } = props;
   const { carts } = useCartStore();
 
   const totalPayment = useMemo(() => {
-    const pay = carts.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+    const pay = carts.reduce((acc, cur, index) => {
+      return isCheckedList[index] ? acc + cur.price * cur.quantity : acc;
+    }, 0);
+
     return pay;
-  }, [carts]);
+  }, [carts, isCheckedList]);
 
   return (
     <S.PaymentContainer>
