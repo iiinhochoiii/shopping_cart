@@ -1,17 +1,20 @@
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Cart, Product } from '@/interfaces/product';
+import { Coupon } from '@/interfaces/coupon';
 import { CART_KEY } from '@/constants/storageKeys';
 
 interface State {
   carts: Cart[];
-  removeCart: (item_no: number) => void;
-  addCart: (item: Product) => void;
-  increaseItem: (item_no: number) => void;
-  decreaseItem: (item_no: number) => void;
-  changeQuantityItem: (item_no: number, value: number) => void;
-  onAllChnageCheckbox: () => void;
-  onSelectChangeCheckbox: (item_no: number) => void;
+  removeCart: (item_no: number) => void; // cart 삭제
+  addCart: (item: Product) => void; // cart 추가
+  increaseItem: (item_no: number) => void; // cart item 수량 추가 (버튼)
+  decreaseItem: (item_no: number) => void; // cart item 수량 감소 (버튼)
+  changeQuantityItem: (item_no: number, value: number) => void; // cart item 수량 변경 (텍스트 입력)
+  onAllChnageCheckbox: () => void; // 전체 cart에 대한 checkbox 변경
+  onSelectChangeCheckbox: (item_no: number) => void; // 각 item에 대한 checkbox 변경
+  couponData: Coupon | undefined;
+  setCouponData: (coupon: Coupon | undefined) => void;
 }
 
 const useCartStore = create(
@@ -89,6 +92,11 @@ const useCartStore = create(
               : cart
           ),
         })),
+      couponData: undefined,
+      setCouponData: (value) =>
+        set(() => ({
+          couponData: value,
+        })),
     }),
     {
       name: CART_KEY, // name of item in the storage (must be unique)
@@ -102,6 +110,7 @@ const useCartStore = create(
               isChecked: true,
             };
           }),
+          couponData: undefined,
         };
       },
     }

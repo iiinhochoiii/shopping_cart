@@ -4,6 +4,7 @@ import { Cart } from '@/interfaces/product';
 import Checkbox from '../Common/Checkbox';
 import useCartStore from '@/stores/useCartStore';
 import dynamic from 'next/dynamic';
+import CouponModal from './CouponModal';
 
 const CartCard = dynamic(() => import('./Card'), { ssr: false });
 const CartPaymentComponent = dynamic(() => import('./Payment'), { ssr: false });
@@ -30,6 +31,7 @@ const CartComponent = () => {
           <CartCard key={item.item_no} cart={item} isChecked={item.isChecked} />
         ))}
       </S.CartContent>
+      <CouponModal />
       <CartPaymentComponent />
     </S.Container>
   );

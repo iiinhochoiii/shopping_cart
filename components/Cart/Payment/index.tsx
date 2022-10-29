@@ -4,15 +4,34 @@ import useCartStore from '@/stores/useCartStore';
 import { comma } from '@/utils/common';
 
 const CartPaymentComponent = () => {
-  const { carts } = useCartStore();
+  const { carts, couponData } = useCartStore();
 
   const totalPayment = useMemo(() => {
     const pay = carts.reduce((acc, cur) => {
-      return cur.isChecked ? acc + cur.price * cur.quantity : acc;
+      if (cur.isChecked) {
+        let price = 0;
+
+        if (cur.availableCoupon === false) {
+          price = cur.price;
+        } else {
+          if (couponData) {
+            if (couponData.type === 'rate') {
+              price = cur.price - cur.price / Number(couponData.discountRate);
+            } else if (couponData.type === 'amount') {
+              price = cur.price - Number(couponData.discountAmount);
+            }
+          } else {
+            price = cur.price;
+          }
+        }
+        return acc + price * cur.quantity;
+      } else {
+        return acc;
+      }
     }, 0);
 
     return pay;
-  }, [carts]);
+  }, [carts, couponData]);
 
   return (
     <S.PaymentContainer>

@@ -60,6 +60,8 @@ export const InfoImage = styled.div`
 `;
 
 export const InfoWrap = styled.div`
+  margin-right: 20%;
+
   p {
     margin: 0 0 5px 0;
     font-size: 13px;
@@ -68,6 +70,10 @@ export const InfoWrap = styled.div`
   .name {
     font-weight: bold;
     text-decoration: underline;
+  }
+
+  .coupon-price {
+    color: rgb(255, 72, 0);
   }
 `;
 

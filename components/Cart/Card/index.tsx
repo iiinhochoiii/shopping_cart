@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as S from './style';
 import { Product } from '@/interfaces/product';
 import Image from 'next/image';
@@ -18,6 +18,7 @@ const CartCard = (props: Props) => {
     decreaseItem,
     changeQuantityItem,
     onSelectChangeCheckbox,
+    couponData,
   } = useCartStore();
 
   const removeHandler = () => {
@@ -37,6 +38,26 @@ const CartCard = (props: Props) => {
     }
   };
 
+  const priceWithCoupon = useMemo(() => {
+    let price = 0;
+
+    if (cart.availableCoupon === false) {
+      price = cart.price;
+    } else {
+      if (couponData) {
+        if (couponData.type === 'rate') {
+          price = cart.price - cart.price / Number(couponData.discountRate);
+        } else if (couponData.type === 'amount') {
+          price = cart.price - Number(couponData.discountAmount);
+        }
+      } else {
+        price = cart.price;
+      }
+    }
+
+    return price;
+  }, [couponData, cart]);
+
   return (
     <S.CardContainer>
       <S.CheckboxContent className="table-content">
@@ -53,7 +74,17 @@ const CartCard = (props: Props) => {
           <S.InfoWrap>
             <p className="name">{cart.item_name}</p>
             <p className="price">{comma(cart.price)}원</p>
-            {cart.availableCoupon !== false && <p>쿠폰 적용 가능</p>}
+            {cart.availableCoupon !== false ? (
+              couponData ? (
+                <p className="coupon-price">{`[${couponData.title}] ${comma(
+                  priceWithCoupon
+                )}원`}</p>
+              ) : (
+                <p>쿠폰 적용 가능</p>
+              )
+            ) : (
+              <p>쿠폰 적용 불가능</p>
+            )}
           </S.InfoWrap>
         </div>
         <button className="delete-btn" onClick={() => removeHandler()}>
@@ -79,7 +110,7 @@ const CartCard = (props: Props) => {
         </div>
       </S.QuantityContent>
       <S.PriceContent className="table-content">
-        <span>{comma(Number(cart.price) * Number(cart.quantity))}</span>원
+        <span>{comma(Number(priceWithCoupon) * Number(cart.quantity))}</span>원
       </S.PriceContent>
       <S.DeliveryContent className="table-content">
         무료 업체배송
