@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
-import { CART_KEY } from '@/constants/storageKeys';
 import { Product } from '@/interfaces/product';
-import CartCard from './Card';
-import CartPaymentComponent from './Payment';
 import Checkbox from '../Common/Checkbox';
+import useCartStore from '@/stores/useCartStore';
+import dynamic from 'next/dynamic';
+
+const CartCard = dynamic(() => import('./Card'), { ssr: false });
+const CartPaymentComponent = dynamic(() => import('./Payment'), { ssr: false });
 
 const CartComponent = () => {
-  const [carts, setCarts] = useState([]);
+  const { carts } = useCartStore();
   const [isChecked, setIsChecked] = useState(false);
-
-  useEffect(() => {
-    const getCart = () => {
-      const data = localStorage.getItem(CART_KEY);
-
-      return JSON.parse(String(data));
-    };
-    const data = getCart();
-    setCarts(data);
-  }, []);
 
   return (
     <S.Container>
