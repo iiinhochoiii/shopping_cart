@@ -70,10 +70,6 @@ export const InfoWrap = styled.div`
     font-weight: bold;
     text-decoration: underline;
   }
-
-  .coupon-price {
-    color: rgb(255, 72, 0);
-  }
 `;
 
 export const QuantityContent = styled.div`

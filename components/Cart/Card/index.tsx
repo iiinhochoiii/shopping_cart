@@ -1,11 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import * as S from './style';
 import { Cart } from '@/interfaces/product';
 import Image from 'next/image';
 import { comma } from '@/utils/common';
 import Checkbox from '@/components/Common/Checkbox';
 import useCartStore from '@/stores/useCartStore';
-import { couponPrice } from '@/utils/cart';
 
 interface Props {
   cart: Cart;
@@ -18,7 +17,6 @@ const CartCard = (props: Props) => {
     decreaseItem,
     changeQuantityItem,
     onSelectChangeCheckbox,
-    couponData,
   } = useCartStore();
 
   const removeHandler = () => {
@@ -38,12 +36,6 @@ const CartCard = (props: Props) => {
     }
   };
 
-  const priceWithCoupon = useMemo(() => {
-    const price = couponPrice(cart, couponData);
-
-    return price;
-  }, [couponData, cart]);
-
   return (
     <S.CardContainer>
       <S.CheckboxContent className="table-content">
@@ -61,13 +53,7 @@ const CartCard = (props: Props) => {
             <p className="name">{cart.item_name}</p>
             <p className="price">{comma(cart.price)}원</p>
             {cart.availableCoupon !== false ? (
-              couponData ? (
-                <p className="coupon-price">{`[${couponData.title}] ${comma(
-                  priceWithCoupon
-                )}원`}</p>
-              ) : (
-                <p>쿠폰 적용 가능</p>
-              )
+              <p>쿠폰 적용 가능</p>
             ) : (
               <p>쿠폰 적용 불가능</p>
             )}
@@ -96,7 +82,7 @@ const CartCard = (props: Props) => {
         </div>
       </S.QuantityContent>
       <S.PriceContent className="table-content">
-        <span>{comma(Number(priceWithCoupon) * Number(cart.quantity))}</span>원
+        <span>{comma(Number(cart.price) * Number(cart.quantity))}</span>원
       </S.PriceContent>
       <S.DeliveryContent className="table-content">
         무료 업체배송

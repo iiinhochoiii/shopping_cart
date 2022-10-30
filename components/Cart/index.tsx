@@ -3,13 +3,11 @@ import * as S from './style';
 import { Cart } from '@/interfaces/product';
 import Checkbox from '../Common/Checkbox';
 import useCartStore from '@/stores/useCartStore';
-import dynamic from 'next/dynamic';
 import CouponModal from './CouponModal';
 import Button from '../Common/Button';
 import EmptyCart from './EmptyCart';
-
-const CartCard = dynamic(() => import('./Card'), { ssr: false });
-const CartPaymentComponent = dynamic(() => import('./Payment'), { ssr: false });
+import CartCard from './Card';
+import CartPaymentComponent from './Payment';
 
 const CartComponent = () => {
   const { carts, onAllChnageCheckbox, removeCart } = useCartStore();

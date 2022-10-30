@@ -97,6 +97,13 @@ export const ContentPayInfoWrap = styled.div`
         background: url(//img.29cm.co.kr/next29cm/order/icon_cout.gif) -30px 0px /
           60px 30px no-repeat;
       }
+
+      & > span {
+        margin-top: 10px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: rgb(255, 72, 0);
+      }
     }
   }
 `;

@@ -4,6 +4,7 @@ import useCouponsData from '@/hooks/queries/useCouponsData';
 import { comma } from '@/utils/common';
 import useCartStore from '@/stores/useCartStore';
 import Button from '@/components/Common/Button';
+import { getTotal } from '@/utils/cart';
 
 const CouponModal = () => {
   const [isOpenCoupon, setIsOpenCoupon] = useState(false);
@@ -33,24 +34,29 @@ const CouponModal = () => {
         }] 을 적용하시겠습니까?`
       )
     ) {
-      setCouponData(coupons?.find((coupon) => coupon.type === selectedType));
+      const couponData = coupons?.find(
+        (coupon) => coupon.type === selectedType
+      );
+
+      setCouponData(couponData);
       setIsOpenCoupon(false);
+    }
+  };
+
+  const openModalHandler = () => {
+    if (
+      carts.filter((cart) => cart.isChecked && cart.availableCoupon !== false)
+        .length > 0
+    ) {
+      setIsOpenCoupon(true);
+    } else {
+      alert('쿠폰 적용 가능한 상품이 체크되어있지 않습니다.');
     }
   };
 
   return (
     <React.Fragment>
-      <Button
-        onClick={() => {
-          if (carts.filter((cart) => cart.isChecked).length > 0) {
-            setIsOpenCoupon(true);
-          } else {
-            alert('상품이 선택되어 있지 않습니다.');
-          }
-        }}
-      >
-        쿠폰 적용
-      </Button>
+      <Button onClick={() => openModalHandler()}>쿠폰 적용</Button>
       <S.ModalWrapper
         isOpen={isOpenCoupon}
         onClick={() => setIsOpenCoupon(!isOpenCoupon)}
