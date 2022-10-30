@@ -74,15 +74,19 @@ const useCartStore = create(
               : cart
           ),
         })),
-      onAllChnageCheckbox: () =>
-        set((state) => ({
+      onAllChnageCheckbox: () => {
+        const { carts } = get();
+        const findisNotCheckedCarts = carts.find((cart) => !cart.isChecked);
+
+        return set((state) => ({
           carts: state.carts.map((cart) => {
             return {
               ...cart,
-              isChecked: !cart.isChecked,
+              isChecked: !!findisNotCheckedCarts,
             };
           }),
-        })),
+        }));
+      },
       onSelectChangeCheckbox: (item_no) =>
         set((state) => ({
           carts: state.carts.map((cart) =>
