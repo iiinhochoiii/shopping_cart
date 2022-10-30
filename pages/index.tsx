@@ -1,9 +1,17 @@
 import React, { useEffect } from 'react';
 import type { NextPage } from 'next';
-import axios from '../utils/axios'
+import LayoutComponent from '@/components/Layout';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
-  return <div>home page</div>;
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/products');
+  }, []);
+
+  return <LayoutComponent>home</LayoutComponent>;
 };
 
-export default Home;4
+export default Home;
+4;
