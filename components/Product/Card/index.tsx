@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import * as S from './style';
 import { Product } from '@/interfaces/product';
 import Image from 'next/image';
@@ -12,8 +12,10 @@ interface Props {
 const ProductCard = (props: Props) => {
   const { item } = props;
   const { carts, removeCart, addCart } = useCartStore();
-  const [isCart, setIsCart] = useState(
-    !!carts.find((cart) => cart.item_no === item.item_no)
+
+  const isCart = useMemo(
+    () => !!carts.find((cart) => cart.item_no === item.item_no),
+    [carts]
   );
 
   return (
@@ -34,10 +36,8 @@ const ProductCard = (props: Props) => {
         onClick={() => {
           if (isCart) {
             removeCart([item.item_no]);
-            setIsCart(false);
           } else {
             addCart(item);
-            setIsCart(true);
           }
         }}
       >
