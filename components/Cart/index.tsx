@@ -28,7 +28,7 @@ const CartComponent = () => {
           <div className="table-title delivery-fee">배송비</div>
         </S.ContentHeader>
         {carts.map((item: Cart) => (
-          <CartCard key={item.item_no} cart={item} isChecked={item.isChecked} />
+          <CartCard key={item.item_no} cart={item} />
         ))}
       </S.CartContent>
       <CouponModal />

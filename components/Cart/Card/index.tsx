@@ -1,17 +1,17 @@
 import React, { useMemo } from 'react';
 import * as S from './style';
-import { Product } from '@/interfaces/product';
+import { Cart } from '@/interfaces/product';
 import Image from 'next/image';
 import { comma } from '@/utils/common';
 import Checkbox from '@/components/Common/Checkbox';
 import useCartStore from '@/stores/useCartStore';
+import { couponPrice } from '@/utils/cart';
 
 interface Props {
-  cart: Product & { quantity: number };
-  isChecked: boolean;
+  cart: Cart;
 }
 const CartCard = (props: Props) => {
-  const { cart, isChecked } = props;
+  const { cart } = props;
   const {
     removeCart,
     increaseItem,
@@ -39,21 +39,7 @@ const CartCard = (props: Props) => {
   };
 
   const priceWithCoupon = useMemo(() => {
-    let price = 0;
-
-    if (cart.availableCoupon === false) {
-      price = cart.price;
-    } else {
-      if (couponData) {
-        if (couponData.type === 'rate') {
-          price = cart.price - cart.price / Number(couponData.discountRate);
-        } else if (couponData.type === 'amount') {
-          price = cart.price - Number(couponData.discountAmount);
-        }
-      } else {
-        price = cart.price;
-      }
-    }
+    const price = couponPrice(cart, couponData);
 
     return price;
   }, [couponData, cart]);
@@ -62,7 +48,7 @@ const CartCard = (props: Props) => {
     <S.CardContainer>
       <S.CheckboxContent className="table-content">
         <Checkbox
-          isChecked={isChecked}
+          isChecked={cart.isChecked}
           onChangeHandler={() => onSelectChangeCheckbox(cart.item_no)}
         />
       </S.CheckboxContent>

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import * as S from './style';
 import useCartStore from '@/stores/useCartStore';
 import { comma } from '@/utils/common';
+import { couponPrice } from '@/utils/cart';
 
 const CartPaymentComponent = () => {
   const { carts, couponData } = useCartStore();
@@ -9,21 +10,8 @@ const CartPaymentComponent = () => {
   const totalPayment = useMemo(() => {
     const pay = carts.reduce((acc, cur) => {
       if (cur.isChecked) {
-        let price = 0;
+        const price = couponPrice(cur, couponData);
 
-        if (cur.availableCoupon === false) {
-          price = cur.price;
-        } else {
-          if (couponData) {
-            if (couponData.type === 'rate') {
-              price = cur.price - cur.price / Number(couponData.discountRate);
-            } else if (couponData.type === 'amount') {
-              price = cur.price - Number(couponData.discountAmount);
-            }
-          } else {
-            price = cur.price;
-          }
-        }
         return acc + price * cur.quantity;
       } else {
         return acc;
