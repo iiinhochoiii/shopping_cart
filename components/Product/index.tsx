@@ -1,33 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as S from './style';
 import useProductsData from '@/hooks/queries/useProductsData';
 import usePagination from '@/hooks/usePagination';
 import ProductCard from './Card';
 import Pagination from '../Common/Pagination';
 
-const ProductComponent = () => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+interface Props {
+  page: number;
+}
 
-  const { data, refetch } = useProductsData({
-    page: currentPage,
+const ProductComponent = (props: Props) => {
+  const { page } = props;
+
+  const { data, refetch, isFetching } = useProductsData({
+    page: page,
     pageSize: 5,
     orderBy: 'desc',
   });
 
-  const { pageList, nextPageHandler, prevPageHandler } = usePagination({
-    currentPage: currentPage,
-    setCurrentPage,
-    total: data?.total,
-    perPage: 5,
-    pageSize: 5,
-  });
+  const { pageList, nextPageHandler, prevPageHandler, routerPush } =
+    usePagination({
+      currentPage: page,
+      total: data?.total,
+      perPage: 5,
+      pageSize: 5,
+    });
 
   useEffect(() => {
     refetch();
-  }, [currentPage]);
+  }, [page]);
+
+  if (isFetching) {
+    return <S.Container>데이터를 불러오는 중 입니다...</S.Container>;
+  }
 
   if (!data) {
-    return <div>데이터를 찾을 수 없습니다.</div>;
+    return <S.Container>데이터가 없습니다...</S.Container>;
   }
 
   return (
@@ -38,9 +46,11 @@ const ProductComponent = () => {
         ))}
       </S.ItemContent>
       <Pagination
-        currentPage={currentPage}
+        currentPage={page}
         pageList={pageList}
-        move={(pageNum) => setCurrentPage(pageNum)}
+        move={(pageNum) => {
+          routerPush(pageNum);
+        }}
         next={() => nextPageHandler()}
         prev={() => prevPageHandler()}
       />

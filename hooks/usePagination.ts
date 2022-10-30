@@ -1,15 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/router';
 
 interface Props {
   total?: number;
   perPage: number;
   pageSize: number;
   currentPage: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const usePagination = (props: Props) => {
-  const { total, perPage, pageSize, currentPage, setCurrentPage } = props;
+  const { total, perPage, pageSize, currentPage } = props;
+  const router = useRouter();
   const [pageList, setPageList] = useState<number[]>([]);
 
   const paging = useCallback(() => {
@@ -30,15 +31,24 @@ const usePagination = (props: Props) => {
     paging();
   }, [total, currentPage]);
 
+  const routerPush = (page: number) => {
+    router.push({
+      pathname: 'products',
+      query: {
+        page: page,
+      },
+    });
+  };
+
   const nextPageHandler = () => {
     if (currentPage < Math.ceil(Number(total) / pageSize)) {
-      setCurrentPage(currentPage + 1);
+      routerPush(currentPage + 1);
     }
   };
 
   const prevPageHandler = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      routerPush(currentPage - 1);
     }
   };
 
@@ -46,6 +56,7 @@ const usePagination = (props: Props) => {
     pageList,
     nextPageHandler,
     prevPageHandler,
+    routerPush,
   };
 };
 

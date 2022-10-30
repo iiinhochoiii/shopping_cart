@@ -7,6 +7,7 @@ const useProductsData = (params: ProductsParams) => {
   return useQuery(queryKeys.PRODUCT_DATA, () => getProducts(params), {
     refetchOnWindowFocus: true,
     staleTime: 60 * 1000,
+    keepPreviousData: true,
   });
 };
 

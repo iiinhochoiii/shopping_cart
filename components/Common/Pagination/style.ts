@@ -11,7 +11,10 @@ export const PageBtn = styled.button<{ isPaging?: boolean }>`
   border: 1px solid;
   padding: 5px 10px;
   border-radius: 5px;
-  cursor: pointer;
   background-color: ${(props) => props.isPaging && '#333'};
   color: ${(props) => props.isPaging && '#fff'};
+
+  &:disabled {
+    cursor: auto;
+  }
 `;

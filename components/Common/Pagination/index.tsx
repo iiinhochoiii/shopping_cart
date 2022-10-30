@@ -26,6 +26,7 @@ const Pagination = (props: Props) => {
           key={page}
           onClick={() => move(page)}
           isPaging={currentPage === page}
+          disabled={page === currentPage}
         >
           {page}
         </S.PageBtn>
