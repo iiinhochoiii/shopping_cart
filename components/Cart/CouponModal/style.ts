@@ -66,7 +66,7 @@ export const ContentTable = styled.table`
         font-size: 14px;
         font-weight: 600;
 
-        &:first-child {
+        &:first-of-type {
           text-align: left;
         }
 

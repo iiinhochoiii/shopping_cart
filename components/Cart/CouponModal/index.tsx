@@ -12,7 +12,7 @@ const CouponModal = () => {
   );
 
   const { data: coupons } = useCouponsData();
-  const { couponData, setCouponData } = useCartStore();
+  const { couponData, setCouponData, carts } = useCartStore();
 
   useEffect(() => {
     if (isOpenCoupon) {
@@ -40,7 +40,17 @@ const CouponModal = () => {
 
   return (
     <React.Fragment>
-      <Button onClick={() => setIsOpenCoupon(true)}>쿠폰 적용</Button>
+      <Button
+        onClick={() => {
+          if (carts.filter((cart) => cart.isChecked).length > 0) {
+            setIsOpenCoupon(true);
+          } else {
+            alert('상품이 선택되어 있지 않습니다.');
+          }
+        }}
+      >
+        쿠폰 적용
+      </Button>
       <S.ModalWrapper
         isOpen={isOpenCoupon}
         onClick={() => setIsOpenCoupon(!isOpenCoupon)}

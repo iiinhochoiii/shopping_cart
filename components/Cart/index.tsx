@@ -6,6 +6,7 @@ import useCartStore from '@/stores/useCartStore';
 import dynamic from 'next/dynamic';
 import CouponModal from './CouponModal';
 import Button from '../Common/Button';
+import EmptyCart from './EmptyCart';
 
 const CartCard = dynamic(() => import('./Card'), { ssr: false });
 const CartPaymentComponent = dynamic(() => import('./Payment'), { ssr: false });
@@ -24,6 +25,10 @@ const CartComponent = () => {
       alert('삭제할 상품을 선택해주세요.');
     }
   };
+
+  if (carts.length === 0) {
+    return <EmptyCart />;
+  }
 
   return (
     <S.Container>

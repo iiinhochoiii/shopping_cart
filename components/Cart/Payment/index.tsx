@@ -32,7 +32,7 @@ const CartPaymentComponent = () => {
         <S.ContentPayInfoWrap>
           <div className="table-content price">
             <p>{comma(totalPayment)}원</p>
-            <span>총 {carts.length || 0}개</span>
+            <span>총 {carts.filter((cart) => cart.isChecked).length}개</span>
           </div>
           <div className="table-content delivery-fee">
             <i />
