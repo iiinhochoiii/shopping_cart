@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 export const Card = styled.article`
   width: 30%;
   margin-bottom: 40px;
+
+  @media screen and (max-width: 1024px) {
+    width: 45%;
+  }
 `;
 
 export const ProductContent = styled.div`

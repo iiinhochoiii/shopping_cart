@@ -40,6 +40,26 @@ export const ContentHeader = styled.div`
       width: 200px;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .table-title {
+      font-size: 14px;
+      font-weight: 500;
+
+      &.price,
+      &.delivery-fee {
+        width: 15%;
+      }
+
+      &.checkbox {
+        width: 40px;
+      }
+
+      &.quantity {
+        width: 120px;
+      }
+    }
+  }
 `;
 
 export const ButtonWrap = styled.div`

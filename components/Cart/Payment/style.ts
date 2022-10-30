@@ -39,6 +39,12 @@ export const ContentTitleWrap = styled.div`
       width: 36%;
     }
   }
+
+  @media screen and (max-width: 766px) {
+    .table-title {
+      font-size: 14px;
+    }
+  }
 `;
 
 export const ContentPayInfoWrap = styled.div`
@@ -103,6 +109,20 @@ export const ContentPayInfoWrap = styled.div`
         font-size: 0.875rem;
         font-weight: 500;
         color: rgb(255, 72, 0);
+      }
+    }
+  }
+
+  @media screen and (max-width: 766px) {
+    .table-content {
+      & > p {
+        font-size: 18px;
+      }
+
+      &.payment {
+        & > span {
+          font-size: 12px;
+        }
       }
     }
   }

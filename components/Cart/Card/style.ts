@@ -21,6 +21,10 @@ export const CardContainer = styled.div`
 export const CheckboxContent = styled.div`
   width: 4.3%;
   border-top: 1px solid rgb(228, 228, 228);
+
+  @media screen and (max-width: 1024px) {
+    width: 40px;
+  }
 `;
 
 export const InfoContent = styled.div`
@@ -48,6 +52,19 @@ export const InfoContent = styled.div`
     color: #5d5d5d;
     width: 50px;
   }
+
+  @media screen and (max-width: 1024px) {
+    .delete-btn {
+      top: 5px;
+      left: 0px;
+    }
+  }
+
+  @media screen and (max-width: 766px) {
+    & > div {
+      flex-wrap: wrap;
+    }
+  }
 `;
 
 export const InfoImage = styled.div`
@@ -56,10 +73,26 @@ export const InfoImage = styled.div`
   margin: 3px 25px 0px 0px;
   position: relative;
   font-size: 18px;
+
+  @media screen and (max-width: 1024px) {
+    & > div {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .delete-btn {
+      top: 5px;
+      left: 0px;
+    }
+  }
+
+  @media screen and (max-width: 766px) {
+    width: 100%;
+    padding-bottom: 100%;
+  }
 `;
 
 export const InfoWrap = styled.div`
-  margin-right: 20%;
+  width: 60%;
 
   p {
     margin: 0 0 5px 0;
@@ -69,6 +102,14 @@ export const InfoWrap = styled.div`
   .name {
     font-weight: bold;
     text-decoration: underline;
+  }
+
+  @media screen and (max-width: 766px) {
+    width: 100%;
+
+    .name {
+      margin-top: 10px;
+    }
   }
 `;
 
@@ -111,6 +152,10 @@ export const QuantityContent = styled.div`
       text-align: center;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    width: 120px;
+  }
 `;
 
 export const PriceContent = styled.div`
@@ -123,6 +168,16 @@ export const PriceContent = styled.div`
     font-size: 20px;
     font-weight: 600;
   }
+
+  @media screen and (max-width: 1024px) {
+    width: 15%;
+    font-size: 14px;
+
+    & > span {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
 `;
 
 export const DeliveryContent = styled.div`
@@ -130,4 +185,9 @@ export const DeliveryContent = styled.div`
   width: 200px;
   font-size: 15px;
   font-weight: 500;
+
+  @media screen and (max-width: 1024px) {
+    width: 15%;
+    font-size: 13px;
+  }
 `;
