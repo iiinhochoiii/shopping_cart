@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import * as Color from '@/constants/colors';
 
 export const Pagination = styled.div`
   margin: 20px 0;
@@ -11,8 +12,8 @@ export const PageBtn = styled.button<{ isPaging?: boolean }>`
   border: 1px solid;
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: ${(props) => props.isPaging && '#333'};
-  color: ${(props) => props.isPaging && '#fff'};
+  background-color: ${(props) => props.isPaging && Color.BLACK};
+  color: ${(props) => props.isPaging && Color.WHITE};
 
   &:disabled {
     cursor: auto;

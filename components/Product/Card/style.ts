@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import * as Color from '@/constants/colors';
 
 export const Card = styled.article`
   width: 30%;
@@ -43,12 +44,12 @@ export const InfomationWrap = styled.div`
 
 export const CartButton = styled.button<{ isCart: boolean }>`
   margin-top: 6px;
-  border: 1px solid #e4e4e4;
+  border: 1px solid ${Color.GRAY};
   padding: 0 8px;
   border-radius: 1px;
   font-size: 10px;
   height: 26px;
   line-height: 26px;
-  color: ${(props) => (props.isCart ? '#fff' : '#5d5d5d')};
-  background: ${(props) => (props.isCart ? '#333' : 'none')};
+  color: ${(props) => (props.isCart ? Color.WHITE : Color.GRAY2)};
+  background: ${(props) => (props.isCart ? Color.BLACK : 'none')};
 `;

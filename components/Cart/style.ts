@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-
-const black = '#333';
+import * as Color from '@/constants/colors';
 
 export const Container = styled.div`
   padding: 50px 0;
@@ -8,15 +7,15 @@ export const Container = styled.div`
 
 export const CartContent = styled.div`
   font-size: 12px;
-  color: rgb(76, 76, 76);
-  border-bottom: 1px solid ${black};
+  color: ${Color.GRAY2};
+  border-bottom: 1px solid ${Color.BLACK};
 `;
 
 export const ContentHeader = styled.div`
   display: table;
   width: 100%;
   table-layout: fixed;
-  border-top: 4px solid ${black};
+  border-top: 4px solid ${Color.BLACK};
 
   .table-title {
     display: table-cell;
@@ -28,7 +27,7 @@ export const ContentHeader = styled.div`
     line-height: 24px;
     vertical-align: middle;
     text-align: center;
-    color: ${black};
+    color: ${Color.BLACK};
 
     &.checkbox {
       width: 4.3%;
@@ -74,8 +73,8 @@ export const ButtonWrap = styled.div`
     margin: 0 auto;
     width: 300px;
     height: 50px;
-    background-color: #333;
-    color: #fff;
+    background-color: ${Color.BLACK};
+    color: ${Color.WHITE};
     border: none;
   }
 `;

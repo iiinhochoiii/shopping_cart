@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import * as Color from '@/constants/colors';
 
 export const ModalWrapper = styled.div<{ isOpen: boolean }>`
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
@@ -14,7 +15,7 @@ export const ModalWrapper = styled.div<{ isOpen: boolean }>`
 export const ModalInner = styled.div`
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  background-color: #fff;
+  background-color: ${Color.WHITE};
   border-radius: 10px;
   width: 480px;
   height: 320px;
@@ -35,7 +36,7 @@ export const ContentHeader = styled.div`
   }
 
   & > button {
-    border: 1px solid #333;
+    border: 1px solid ${Color.BLACK};
     background: none;
   }
 `;
@@ -43,15 +44,15 @@ export const ContentHeader = styled.div`
 export const ContentTable = styled.table`
   margin-top: 20px;
   width: 100%;
-  border-top: 2px solid #333;
-  border-bottom: 1px solid #333;
+  border-top: 2px ${Color.BLACK};
+  border-bottom: 1px solid ${Color.BLACK};
   border-spacing: 0;
 
   & > thead {
     & > tr {
       height: 40px;
       & > th {
-        border-bottom: 1px solid #333;
+        border-bottom: 1px solid ${Color.BLACK};
         font-size: 13px;
         font-weight: 400;
       }
@@ -92,11 +93,11 @@ export const SelectBtn = styled.button`
   margin-top: 20px;
   width: 100px;
   height: 32px;
-  border: 1px solid #333;
+  border: 1px solid ${Color.BLACK};
   background: none;
 
   &:hover {
-    background-color: #333;
-    color: #fff;
+    background-color: ${Color.BLACK};
+    color: ${Color.WHITE};
   }
 `;

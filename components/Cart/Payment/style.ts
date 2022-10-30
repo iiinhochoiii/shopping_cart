@@ -1,19 +1,20 @@
 import styled from '@emotion/styled';
+import * as Color from '@/constants/colors';
 
 export const PaymentContainer = styled.section`
   margin: 100px 0 50px 0;
 `;
 
 export const Content = styled.div`
-  border-bottom: 1px solid rgb(0, 0, 0);
+  border-bottom: 1px solid ${Color.BLACK};
 `;
 
 export const ContentTitleWrap = styled.div`
   display: table;
   width: 100%;
   table-layout: fixed;
-  border-top: 4px solid rgb(0, 0, 0);
-  border-bottom: 1px solid rgb(228, 228, 228);
+  border-top: 4px solid ${Color.BLACK};
+  border-bottom: 1px solid ${Color.GRAY};
 
   .table-title {
     display: table-cell;
@@ -23,7 +24,7 @@ export const ContentTitleWrap = styled.div`
     font-size: 18px;
     font-weight: 700;
     line-height: 24px;
-    color: rgb(0, 0, 0);
+    color: ${Color.BLACK};
     vertical-align: middle;
     text-align: center;
 
@@ -108,7 +109,7 @@ export const ContentPayInfoWrap = styled.div`
         margin-top: 10px;
         font-size: 0.875rem;
         font-weight: 500;
-        color: rgb(255, 72, 0);
+        color: ${Color.RED};
       }
     }
   }

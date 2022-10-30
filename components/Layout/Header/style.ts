@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import * as Color from '@/constants/colors';
 
 export const HeaderContainer = styled.header`
   position: fixed;
@@ -6,8 +7,8 @@ export const HeaderContainer = styled.header`
   left: 0;
   right: 0;
   z-index: 100;
-  border-bottom: 1px solid #d4d4d4;
-  background-color: #fff;
+  border-bottom: 1px solid ${Color.GRAY};
+  background-color: ${Color.WHITE};
   padding: 0 20px;
 `;
 

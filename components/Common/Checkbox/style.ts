@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import * as Color from '@/constants/colors';
 
 export const CheckboxContainer = styled.span`
   display: inline-block;
@@ -27,7 +28,7 @@ export const CheckboxContainer = styled.span`
     display: inline-block;
     position: relative;
     z-index: 1;
-    color: rgb(48, 48, 51);
+    color: ${Color.BLACK};
     cursor: pointer;
     vertical-align: top;
     padding-left: 24px;
@@ -35,11 +36,11 @@ export const CheckboxContainer = styled.span`
 
     &.checked {
       &::before {
-        border-color: rgb(55, 95, 255);
-        background: rgb(55, 95, 255);
+        border-color: ${Color.BLUE};
+        background: ${Color.BLUE};
       }
       &::after {
-        border-color: rgb(255, 255, 255);
+        border-color: ${Color.WHITE};
       }
     }
 
@@ -47,8 +48,8 @@ export const CheckboxContainer = styled.span`
       position: absolute;
       top: 0px;
       left: 0px;
-      background: rgb(255, 255, 255);
-      border: 1px solid rgb(212, 212, 212);
+      background: ${Color.WHITE};
+      border: 1px solid ${Color.GRAY};
       border-radius: 2px;
       text-align: center;
       content: '';
@@ -60,7 +61,7 @@ export const CheckboxContainer = styled.span`
     &::after {
       position: absolute;
       border-style: solid;
-      border-color: rgb(212, 212, 212);
+      border-color: ${Color.GRAY};
       border-image: initial;
       border-width: 0px 1px 1px 0px;
       transform: rotate(45deg);

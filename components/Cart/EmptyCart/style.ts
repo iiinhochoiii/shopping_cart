@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
+import * as Color from '@/constants/colors';
 
 export const Container = styled.div`
   margin-top: 100px;
   width: 100%;
   padding: 100px 0px;
-  border-top: 4px solid rgb(0, 0, 0);
-  border-bottom: 1px solid rgb(0, 0, 0);
+  border-top: 4px solid ${Color.BLACK};
+  border-bottom: 1px solid ${Color.BLACK};
   text-align: center;
 
   & > span {
@@ -20,7 +21,7 @@ export const LinkWrap = styled.div`
 
   & > a {
     margin: 0 auto;
-    border: 1px solid #333;
+    border: 1px solid ${Color.BLACK};
     width: 250px;
     height: 60px;
     line-height: 60px;

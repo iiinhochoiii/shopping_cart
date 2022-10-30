@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-
-const gray = '#E4E4E4';
+import * as Color from '@/constants/colors';
 
 export const CardContainer = styled.div`
   position: relative;
@@ -12,7 +11,7 @@ export const CardContainer = styled.div`
     display: table-cell;
     padding: 30px 0px;
     line-height: 24px;
-    color: rgb(0, 0, 0);
+    color: ${Color.BLACK};
     text-align: center;
     vertical-align: middle;
   }
@@ -20,7 +19,7 @@ export const CardContainer = styled.div`
 
 export const CheckboxContent = styled.div`
   width: 4.3%;
-  border-top: 1px solid rgb(228, 228, 228);
+  border-top: 1px solid ${Color.GRAY};
 
   @media screen and (max-width: 1024px) {
     width: 40px;
@@ -29,9 +28,9 @@ export const CheckboxContent = styled.div`
 
 export const InfoContent = styled.div`
   display: table-cell;
-  border-top: 1px solid ${gray};
+  border-top: 1px solid ${Color.GRAY};
   font-size: 18px;
-  color: rgb(0, 0, 0);
+  color: ${Color.BLACK};
   vertical-align: middle;
   position: relative;
   padding: 27px 60px 30px 0px;
@@ -48,8 +47,8 @@ export const InfoContent = styled.div`
     width: 24px;
     height: 24px;
     background: none;
-    border: 1px solid #e4e4e4;
-    color: #5d5d5d;
+    border: 1px solid ${Color.GRAY};
+    color: ${Color.GRAY2};
     width: 50px;
   }
 
@@ -116,7 +115,7 @@ export const InfoWrap = styled.div`
 export const QuantityContent = styled.div`
   width: 200px;
   border-style: solid;
-  border-color: ${gray};
+  border-color: ${Color.GRAY};
   border-image: initial;
   border-width: 1px 1px 0px;
   font-size: 18px;
@@ -130,23 +129,23 @@ export const QuantityContent = styled.div`
       min-height: 25px;
       width: 36px;
       height: 36px;
-      border: 1px solid ${gray};
-      background: #fff;
+      border: 1px solid ${Color.GRAY};
+      background: ${Color.WHITE};
       font-size: 20px;
       font-weight: 400;
-      color: rgb(160, 160, 160);
+      color: ${Color.GRAY2};
     }
 
     & > input {
-      color: rgb(26, 26, 26);
+      color: ${Color.BLACK};
       outline: none;
       width: 37px;
       height: 36px;
       border-width: 1px 0px 1px 0px;
       border-top-style: solid;
       border-bottom-style: solid;
-      border-top-color: ${gray};
-      border-bottom-color: ${gray};
+      border-top-color: ${Color.GRAY};
+      border-bottom-color: ${Color.GRAY};
       font-size: 14px;
       font-weight: 500;
       text-align: center;
@@ -159,8 +158,8 @@ export const QuantityContent = styled.div`
 `;
 
 export const PriceContent = styled.div`
-  border-top: 1px solid ${gray};
-  border-right: 1px solid ${gray};
+  border-top: 1px solid ${Color.GRAY};
+  border-right: 1px solid ${Color.GRAY};
   width: 200px;
   font-size: 18px;
 
@@ -181,7 +180,7 @@ export const PriceContent = styled.div`
 `;
 
 export const DeliveryContent = styled.div`
-  border-top: 1px solid ${gray};
+  border-top: 1px solid ${Color.GRAY};
   width: 200px;
   font-size: 15px;
   font-weight: 500;
