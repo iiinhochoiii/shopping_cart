@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const PaymentContainer = styled.section`
-  margin: 100px 0;
+  margin: 100px 0 50px 0;
 `;
 
 export const Content = styled.div`

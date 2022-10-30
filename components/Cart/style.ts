@@ -44,8 +44,18 @@ export const ContentHeader = styled.div`
 
 export const ButtonWrap = styled.div`
   margin-top: 40px;
+  display: flex;
 
   & > button {
     margin-right: 10px;
+  }
+
+  .buy-btn {
+    margin: 0 auto;
+    width: 300px;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+    border: none;
   }
 `;

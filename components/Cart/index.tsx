@@ -12,7 +12,7 @@ import CartPaymentComponent from './Payment';
 const CartComponent = () => {
   const { carts, onAllChnageCheckbox, removeCart } = useCartStore();
 
-  const deleteCart = () => {
+  const deleteCartHandler = () => {
     const checkedCarts = carts.filter((cart) => cart.isChecked);
 
     if (checkedCarts.length > 0) {
@@ -49,10 +49,23 @@ const CartComponent = () => {
       </S.CartContent>
       <S.ButtonWrap>
         <CouponModal />
-        <Button onClick={() => deleteCart()}>선택상품 삭제</Button>
+        <Button onClick={() => deleteCartHandler()}>선택상품 삭제</Button>
       </S.ButtonWrap>
 
       <CartPaymentComponent />
+      <S.ButtonWrap>
+        <Button
+          className="buy-btn"
+          onClick={() => {
+            if (confirm('구매하시겠습니까?')) {
+              const checkedCarts = carts.filter((cart) => cart.isChecked);
+              removeCart(checkedCarts.map((cart) => cart.item_no));
+            }
+          }}
+        >
+          구매하기
+        </Button>
+      </S.ButtonWrap>
     </S.Container>
   );
 };
