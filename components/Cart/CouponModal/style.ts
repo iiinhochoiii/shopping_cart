@@ -1,20 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
-  margin-top: 40px;
-`;
-
-export const ModalBtn = styled.button`
-  align-items: center;
-  width: 130px;
-  height: 40px;
-  border: 1px solid rgb(160, 160, 160);
-  color: rgb(48, 48, 51);
-  background: none;
-  font-size: 15px;
-  cursor: pointer;
-`;
-
 export const ModalWrapper = styled.div<{ isOpen: boolean }>`
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   position: fixed;
@@ -52,7 +37,6 @@ export const ContentHeader = styled.div`
   & > button {
     border: 1px solid #333;
     background: none;
-    cursor: pointer;
   }
 `;
 
@@ -110,7 +94,6 @@ export const SelectBtn = styled.button`
   height: 32px;
   border: 1px solid #333;
   background: none;
-  cursor: pointer;
 
   &:hover {
     background-color: #333;

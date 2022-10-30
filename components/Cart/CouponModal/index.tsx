@@ -3,6 +3,7 @@ import * as S from './style';
 import useCouponsData from '@/hooks/queries/useCouponsData';
 import { comma } from '@/utils/common';
 import useCartStore from '@/stores/useCartStore';
+import Button from '@/components/Common/Button';
 
 const CouponModal = () => {
   const [isOpenCoupon, setIsOpenCoupon] = useState(false);
@@ -38,8 +39,8 @@ const CouponModal = () => {
   };
 
   return (
-    <S.Container>
-      <S.ModalBtn onClick={() => setIsOpenCoupon(true)}>쿠폰 적용</S.ModalBtn>
+    <React.Fragment>
+      <Button onClick={() => setIsOpenCoupon(true)}>쿠폰 적용</Button>
       <S.ModalWrapper
         isOpen={isOpenCoupon}
         onClick={() => setIsOpenCoupon(!isOpenCoupon)}
@@ -83,7 +84,7 @@ const CouponModal = () => {
           <S.SelectBtn onClick={() => completeHandler()}>적용하기</S.SelectBtn>
         </S.ModalInner>
       </S.ModalWrapper>
-    </S.Container>
+    </React.Fragment>
   );
 };
 

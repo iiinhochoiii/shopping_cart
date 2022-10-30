@@ -47,7 +47,6 @@ export const InfoContent = styled.div`
     border: 1px solid #e4e4e4;
     color: #5d5d5d;
     width: 50px;
-    cursor: pointer;
   }
 `;
 
@@ -99,7 +98,6 @@ export const QuantityContent = styled.div`
       font-size: 20px;
       font-weight: 400;
       color: rgb(160, 160, 160);
-      cursor: pointer;
     }
 
     & > input {

@@ -5,6 +5,7 @@ import Checkbox from '../Common/Checkbox';
 import useCartStore from '@/stores/useCartStore';
 import dynamic from 'next/dynamic';
 import CouponModal from './CouponModal';
+import Button from '../Common/Button';
 
 const CartCard = dynamic(() => import('./Card'), { ssr: false });
 const CartPaymentComponent = dynamic(() => import('./Payment'), { ssr: false });
@@ -31,7 +32,11 @@ const CartComponent = () => {
           <CartCard key={item.item_no} cart={item} />
         ))}
       </S.CartContent>
-      <CouponModal />
+      <S.ButtonWrap>
+        <CouponModal />
+        <Button onClick={() => console.log(carts)}>선택상품 삭제</Button>
+      </S.ButtonWrap>
+
       <CartPaymentComponent />
     </S.Container>
   );

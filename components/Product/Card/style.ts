@@ -45,7 +45,6 @@ export const CartButton = styled.button<{ isCart: boolean }>`
   font-size: 10px;
   height: 26px;
   line-height: 26px;
-  cursor: pointer;
   color: ${(props) => (props.isCart ? '#fff' : '#5d5d5d')};
   background: ${(props) => (props.isCart ? '#333' : 'none')};
 `;

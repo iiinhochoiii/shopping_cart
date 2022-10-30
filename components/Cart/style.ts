@@ -41,3 +41,11 @@ export const ContentHeader = styled.div`
     }
   }
 `;
+
+export const ButtonWrap = styled.div`
+  margin-top: 40px;
+
+  & > button {
+    margin-right: 10px;
+  }
+`;
