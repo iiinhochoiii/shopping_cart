@@ -33,7 +33,7 @@ const ProductCard = (props: Props) => {
         isCart={isCart}
         onClick={() => {
           if (isCart) {
-            removeCart(item.item_no);
+            removeCart([item.item_no]);
             setIsCart(false);
           } else {
             addCart(item);

@@ -23,7 +23,7 @@ const CartCard = (props: Props) => {
 
   const removeHandler = () => {
     if (confirm('장바구니에서 삭제하시겠습니까?')) {
-      removeCart(cart.item_no);
+      removeCart([cart.item_no]);
     }
   };
 

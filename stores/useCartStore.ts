@@ -6,7 +6,7 @@ import { CART_KEY } from '@/constants/storageKeys';
 
 interface State {
   carts: Cart[];
-  removeCart: (item_no: number) => void; // cart 삭제
+  removeCart: (item_no_list: number[]) => void; // cart 삭제
   addCart: (item: Product) => void; // cart 추가
   increaseItem: (item_no: number) => void; // cart item 수량 추가 (버튼)
   decreaseItem: (item_no: number) => void; // cart item 수량 감소 (버튼)
@@ -21,9 +21,11 @@ const useCartStore = create(
   persist<State>(
     (set, get) => ({
       carts: [],
-      removeCart: (item_no) =>
+      removeCart: (item_no_list) =>
         set((state) => ({
-          carts: state.carts.filter((cart) => cart.item_no !== item_no),
+          carts: state.carts.filter(
+            (cart) => !item_no_list.includes(cart.item_no)
+          ),
         })),
       addCart: (item) => {
         const { carts } = get();

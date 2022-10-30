@@ -11,7 +11,19 @@ const CartCard = dynamic(() => import('./Card'), { ssr: false });
 const CartPaymentComponent = dynamic(() => import('./Payment'), { ssr: false });
 
 const CartComponent = () => {
-  const { carts, onAllChnageCheckbox } = useCartStore();
+  const { carts, onAllChnageCheckbox, removeCart } = useCartStore();
+
+  const deleteCart = () => {
+    const checkedCarts = carts.filter((cart) => cart.isChecked);
+
+    if (checkedCarts.length > 0) {
+      if (confirm('선택하신 상품을 장바구니에서 제거 하시겠습니까?')) {
+        removeCart(checkedCarts.map((cart) => cart.item_no));
+      }
+    } else {
+      alert('삭제할 상품을 선택해주세요.');
+    }
+  };
 
   return (
     <S.Container>
@@ -34,7 +46,7 @@ const CartComponent = () => {
       </S.CartContent>
       <S.ButtonWrap>
         <CouponModal />
-        <Button onClick={() => console.log(carts)}>선택상품 삭제</Button>
+        <Button onClick={() => deleteCart()}>선택상품 삭제</Button>
       </S.ButtonWrap>
 
       <CartPaymentComponent />
